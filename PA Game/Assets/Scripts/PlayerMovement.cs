@@ -38,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
         horizontalinput = Input.GetAxis("Horizontal");
         verticalinput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * horizontalspeed * Time.deltaTime * horizontalinput);
-        transform.Translate(Vector3.right * verticalspeed * Time.deltaTime * verticalinput);
+        transform.Translate(Vector3.forward * verticalspeed * Time.deltaTime * verticalinput);
+        transform.Translate(Vector3.right * horizontalspeed * Time.deltaTime * horizontalinput);
 
     }
 }
