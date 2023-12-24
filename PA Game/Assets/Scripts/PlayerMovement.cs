@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalspeed;
     public float verticalspeed;
 
-    Vector3 moveDirection;
-
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -30,23 +28,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //PlayerInput();
+        PlayerInput();
     }
 
     private void FixedUpdate()
     {
-        PlayerInput();
+        MovePlayer();
     }
 
     void PlayerInput()
     {
         horizontalinput = Input.GetAxis("Horizontal");
         verticalinput = Input.GetAxis("Vertical");
+    }
 
-        transform.Translate(Vector3.forward.normalized * verticalspeed * Time.deltaTime * verticalinput);
-        transform.Translate(Vector3.right.normalized * horizontalspeed * Time.deltaTime * horizontalinput);
+    void MovePlayer()
+    {
+        Vector3 movement = new Vector3(horizontalinput * horizontalspeed, 0, verticalinput * verticalspeed);
 
-        
+        rb.velocity = transform.TransformDirection(movement);
 
+        //rb.AddForce(movement.normalized *10f, ForceMode.Force);
     }
 }
