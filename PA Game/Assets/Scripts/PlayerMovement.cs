@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //PlayerInput();
+    }
+
+    private void FixedUpdate()
+    {
         PlayerInput();
     }
 
@@ -38,8 +43,10 @@ public class PlayerMovement : MonoBehaviour
         horizontalinput = Input.GetAxis("Horizontal");
         verticalinput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * verticalspeed * Time.deltaTime * verticalinput);
-        transform.Translate(Vector3.right * horizontalspeed * Time.deltaTime * horizontalinput);
+        transform.Translate(Vector3.forward.normalized * verticalspeed * Time.deltaTime * verticalinput);
+        transform.Translate(Vector3.right.normalized * horizontalspeed * Time.deltaTime * horizontalinput);
+
+        
 
     }
 }
