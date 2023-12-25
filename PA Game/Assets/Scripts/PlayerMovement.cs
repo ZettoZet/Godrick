@@ -46,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movement = new Vector3(horizontalinput * horizontalspeed, 0, verticalinput * verticalspeed);
 
-        rb.velocity = transform.TransformDirection(movement);
+        //rb.velocity = transform.TransformDirection(movement);
 
-        //rb.AddForce(movement.normalized *10f, ForceMode.Force);
+        rb.AddForce(movement.normalized *10f, ForceMode.Force);
     }
 }
