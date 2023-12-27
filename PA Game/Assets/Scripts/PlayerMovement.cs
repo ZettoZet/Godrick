@@ -12,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
     float horizontalinput;
     float verticalinput;
 
-    public float horizontalspeed;
-    public float verticalspeed;
+    public Transform orientation;
+
+    public float speed;
 
     Rigidbody rb;
+
+    Vector3 movement;
 
     // Start is called before the first frame update
     void Start()
@@ -44,10 +47,23 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        Vector3 movement = new Vector3(horizontalinput * horizontalspeed, 0, verticalinput * verticalspeed);
+        
+        movement = orientation.forward * verticalinput + orientation.right * horizontalinput;
+        
+        // kalo mau pake speed konstan
+        rb.velocity = new Vector3(movement.x * speed, 0, movement.z * speed);
+
+        // kalo mau pake speed++
+        rb.AddForce(movement.normalized * speed *10f, ForceMode.Force);
+
+
+
 
         //rb.velocity = transform.TransformDirection(movement);
+        //transform.Translate(movement * speed);
 
-        rb.AddForce(movement.normalized *10f, ForceMode.Force);
+        //rb.MovePosition(movement);
+
+
     }
 }
