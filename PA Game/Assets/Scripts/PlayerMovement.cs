@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
     //public Transform orientation;
 
+    Rigidbody rb;
+    Vector3 movement;
+
     float horizontalinput;
     float verticalinput;
 
@@ -16,9 +19,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed;
 
-    Rigidbody rb;
-
-    Vector3 movement;
+    public float playerHeight;
+    public LayerMask ground;
+    bool onGround;
+    public float groundDrag;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +33,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         PlayerInput();
+        GroundCheck();
+        MaxSpeed();
     }
 
     private void FixedUpdate()
@@ -51,10 +57,10 @@ public class PlayerMovement : MonoBehaviour
         movement = orientation.forward * verticalinput + orientation.right * horizontalinput;
         
         // kalo mau pake speed konstan
-        rb.velocity = new Vector3(movement.x * speed, 0, movement.z * speed);
+        //rb.velocity = new Vector3(movement.x * speed, 0, movement.z * speed);
 
         // kalo mau pake speed++
-        rb.AddForce(movement.normalized * speed *10f, ForceMode.Force);
+        rb.AddForce(movement.normalized * speed * 10f, ForceMode.Force);
 
 
 
@@ -63,7 +69,30 @@ public class PlayerMovement : MonoBehaviour
         //transform.Translate(movement * speed);
 
         //rb.MovePosition(movement);
+    }
 
+    void GroundCheck()
+    {
+        onGround = Physics.Raycast(transform.position,Vector3.down, playerHeight * 0.945472f + 0.2f, ground);
 
+        if (onGround)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            rb.drag = 0f;
+        }
+    }
+
+    void MaxSpeed()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if (flatVel.magnitude > speed)
+        {
+            Vector3 limitVel = flatVel.normalized * speed;
+            rb.velocity = new Vector3(limitVel.x, rb.velocity.y, limitVel.z);
+        }
     }
 }
