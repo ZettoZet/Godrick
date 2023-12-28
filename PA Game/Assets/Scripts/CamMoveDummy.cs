@@ -8,11 +8,14 @@ public class CamMoveDummy : MonoBehaviour
     public float sensY;
 
     public Transform orientation;
+    public Transform player;
 
     float xRotation;
     float yRotation;
 
     public GameObject playerCam;
+
+    Vector3 campos;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class CamMoveDummy : MonoBehaviour
         Cursor.visible = false;
 
         playerCam = GameObject.Find("PlayerCam");
+
     }
 
     void Update()
@@ -36,8 +40,11 @@ public class CamMoveDummy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
+
         //head cam
         playerCam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        campos = new Vector3(transform.position.x, player.position.y, transform.position.z);
+
     }
 
 
