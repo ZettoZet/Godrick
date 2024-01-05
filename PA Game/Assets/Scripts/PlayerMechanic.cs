@@ -27,21 +27,17 @@ public class PlayerMechanic : MonoBehaviour
     public GameObject bullet;
     public float shootForce;
 
-
     public Transform attackPoint;
     public Camera playerCam;
 
     public float shootingInterval;
 
-    bool allowInvoke = true;
     bool canShoot;
 
     // Start is called before the first frame update
     private void Awake()
     {
         canShoot = true;
-        Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
-
 
     }
 
@@ -149,22 +145,18 @@ public class PlayerMechanic : MonoBehaviour
         Vector3 direction = targetPoint - attackPoint.position;
 
         GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+        Destroy(currentBullet.gameObject, 1f);
 
         currentBullet.transform.forward = direction.normalized;
 
         //bullet force
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse);
 
-        if (allowInvoke)
-        {
-            Invoke("ResetShot", shootingInterval);
-            allowInvoke = false;
-        }
+        Invoke("ResetShot", shootingInterval);
     }
 
     void ResetShot()
     {
         canShoot = true;
-        allowInvoke = true;
     }
 }
