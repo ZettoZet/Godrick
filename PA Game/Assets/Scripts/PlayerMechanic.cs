@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMechanic : MonoBehaviour
 {
+
     Rigidbody rb;
     Vector3 movement;
 
@@ -11,6 +12,8 @@ public class PlayerMechanic : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     bool shootInput;
+
+    float exitInput;
 
     //player facing orientation
     public Transform orientation;
@@ -34,6 +37,8 @@ public class PlayerMechanic : MonoBehaviour
 
     bool canShoot;
 
+    public bool isPause;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -55,6 +60,7 @@ public class PlayerMechanic : MonoBehaviour
         PlayerInput();
         GroundCheck();
         MaxSpeed();
+        Cancel();
     }
 
     private void FixedUpdate()
@@ -64,6 +70,8 @@ public class PlayerMechanic : MonoBehaviour
 
     void PlayerInput()
     {
+        
+
         //movement input
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -158,5 +166,24 @@ public class PlayerMechanic : MonoBehaviour
     void ResetShot()
     {
         canShoot = true;
+    }
+
+    void Cancel()
+    {
+
+
+        
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            if (Input.GetKeyUp(KeyCode.LeftAlt))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+
+
     }
 }

@@ -7,6 +7,6 @@ public class GameUIHandler : MonoBehaviour
 {
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(0);
     }
 }

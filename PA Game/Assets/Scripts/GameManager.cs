@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -16,8 +17,10 @@ public class GameManager : MonoBehaviour
 
     /*public Button restartButton;*/
     // Start is called before the first frame update
-    public void StartGame()
+    public void Start()
     {
+        isGameActive = false;
+
         if (instance != null)
         {
             Destroy(gameObject);
@@ -27,8 +30,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        isGameActive = true;
-        StartCoroutine(Timer());
+        
 
 
         
@@ -37,9 +39,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameActive == true)
+        if (SceneManager.GetActiveScene().name == "Game")
         {
+            Invoke("GameActive",0f);
             Countdown();
+            //StartCoroutine(Timer());
         }
     }
 
@@ -58,13 +62,16 @@ public class GameManager : MonoBehaviour
             countdown -= 1 * Time.deltaTime;
             /*countdownText.text = "Time: " + Mathf.RoundToInt(countdown);*/
         }
-        else
+        if(countdown <= 0)
         {
-            isGameActive = false;
+            Invoke("GameInActive", 0f);
+            ChangeScene();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
-    IEnumerator Timer()
+    /*IEnumerator Timer()
     {
         yield return new WaitForSeconds(countdown);
 
@@ -72,5 +79,24 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }*/
+
+    public void ChangeScene()
+    {
+        if (!isGameActive && SceneManager.GetActiveScene().name == "Game")
+        {
+            SceneManager.LoadScene(0);
+            countdown = 5f;
+        }
+    }
+
+    void GameActive()
+    {
+        isGameActive=true;
+    }
+
+    void GameInActive()
+    {
+        isGameActive = false;
     }
 }
