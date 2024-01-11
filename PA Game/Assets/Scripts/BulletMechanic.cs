@@ -19,6 +19,13 @@ public class NewBehaviourScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Enemy")
+        {
             Destroy(collision.gameObject);
+        }
+        else
+        {
+            
+        Destroy(gameObject);
+        }
     }
 }

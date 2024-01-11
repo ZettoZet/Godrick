@@ -2497,7 +2497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902863067bb348b418a1e11e58f105cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdown: 5
+  countdown: 60
   isGameActive: 0
 --- !u!1 &2003368163
 GameObject:

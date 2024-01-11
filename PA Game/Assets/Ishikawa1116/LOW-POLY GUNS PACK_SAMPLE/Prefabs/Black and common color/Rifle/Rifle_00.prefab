@@ -722,7 +722,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2349258150479485684}
-  - component: {fileID: 3061582640435243958}
   m_Layer: 0
   m_Name: Rifle_00
   m_TagString: Untagged
@@ -754,27 +753,6 @@ Transform:
   - {fileID: 2322742581344695901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3061582640435243958
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3157565929852043342}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.109781496, y: 0.21122113, z: 0.85640496}
-  m_Center: {x: -0.008029189, y: 0.020198572, z: 0.07179752}
 --- !u!1 &5358416715665335052
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,8 +37,6 @@ public class PlayerMechanic : MonoBehaviour
 
     bool canShoot;
 
-    public bool isPause;
-
     // Start is called before the first frame update
     private void Awake()
     {
@@ -153,6 +151,7 @@ public class PlayerMechanic : MonoBehaviour
         Vector3 direction = targetPoint - attackPoint.position;
 
         GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+        currentBullet.transform.LookAt(attackPoint.position);
         Destroy(currentBullet.gameObject, 1f);
 
         currentBullet.transform.forward = direction.normalized;

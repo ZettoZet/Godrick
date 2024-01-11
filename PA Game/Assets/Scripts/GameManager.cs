@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     /*public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI countdownText;*/
 
-    public float countdown = 5f;
+    public float countdown = 60f;
     public static GameManager instance;
 
     public bool isGameActive;
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         if (!isGameActive && SceneManager.GetActiveScene().name == "Game")
         {
             SceneManager.LoadScene(0);
-            countdown = 5f;
+            countdown = 60f;
         }
     }
 
