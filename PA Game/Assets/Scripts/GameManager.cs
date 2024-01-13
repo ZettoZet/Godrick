@@ -7,8 +7,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    /*public TextMeshProUGUI gameOverText;
-    public TextMeshProUGUI countdownText;*/
+    /*public TextMeshProUGUI gameOverText;*/
+
+    public TextMeshProUGUI countdownText;
+
 
     public float countdown = 60f;
     public static GameManager instance;
@@ -30,10 +32,10 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+
         
 
 
-        
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Game")
         {
+            countdownText = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
             Invoke("GameActive",0f);
             Countdown();
             //StartCoroutine(Timer());
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
         if(countdown > 0)
         {
             countdown -= 1 * Time.deltaTime;
-            /*countdownText.text = "Time: " + Mathf.RoundToInt(countdown);*/
+            countdownText.text = "Time: " + Mathf.RoundToInt(countdown);    
         }
         if(countdown <= 0)
         {
