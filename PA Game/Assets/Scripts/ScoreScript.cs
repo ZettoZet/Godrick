@@ -6,18 +6,43 @@ using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
-    public static int baseScore = 0;
-    public TextMeshProUGUI score;
+    public static ScoreScript instance;
+    public int score;
+    public TextMeshProUGUI scoreText;
 
+
+    private void Awake()
+    {
+        instance = this;
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
-        score = GetComponent<TextMeshProUGUI>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        score.text = "Score: " + baseScore.ToString();
+        scoreText.text = "Score: " + score.ToString();
+        //Debug.Log("Score : " + score);
+        //LoadScore();
+    }
+
+    public void AddScore()
+    {
+        score += 10;
+        SaveScore();
+    }
+
+    public void LoadScore()
+    {
+       score = PlayerPrefs.GetInt("Score", 0);
+    }
+
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", score);
     }
 }

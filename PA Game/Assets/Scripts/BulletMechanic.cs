@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public Text score;
-    public Text highScore;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,8 +22,10 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            ScoreScript.baseScore += 10;
+            
+            //ScoreScript.baseScore += 10;
             Destroy(collision.gameObject);
+            ScoreScript.instance.AddScore();
 
         }
         else
