@@ -14,7 +14,7 @@ public class MainMenuUIHandler : MonoBehaviour
     }
     public void ExitGame()
     {
-        //Application.Quit();
-        EditorApplication.ExitPlaymode();
+        Application.Quit();
+        //EditorApplication.ExitPlaymode();
     }
 }
