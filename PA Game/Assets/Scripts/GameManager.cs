@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
-
-
-        
-
-
     }
 
     // Update is called once per frame
@@ -96,7 +91,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameActive && SceneManager.GetActiveScene().name == "Game")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("GameOver");
             countdown = 60f;
         }
     }
