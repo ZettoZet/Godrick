@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     /*public TextMeshProUGUI gameOverText;*/
 
     public TextMeshProUGUI countdownText;
+    public TextMeshProUGUI highScoreMain;
 
+    public int highScore;
 
     public float countdown = 60f;
     public static GameManager instance;
@@ -47,6 +49,12 @@ public class GameManager : MonoBehaviour
             Invoke("GameActive",0f);
             Countdown();
             //StartCoroutine(Timer());
+        }
+        else if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            loadHighScore();
+            highScoreMain = GameObject.Find("HighScore").GetComponent<TextMeshProUGUI>();
+            highScoreMain.text = "High Score: " + highScore;
         }
     }
 
@@ -101,5 +109,10 @@ public class GameManager : MonoBehaviour
     void GameInActive()
     {
         isGameActive = false;
+    }
+
+    public void loadHighScore()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 }
