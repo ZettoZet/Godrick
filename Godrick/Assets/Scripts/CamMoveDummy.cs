@@ -8,7 +8,6 @@ public class CamMoveDummy : MonoBehaviour
     public float sensY;
 
     public Transform orientation;
-    public Transform player;
 
     float xRotation;
     float yRotation;
